@@ -1,29 +1,39 @@
 <script setup>
+import { ref } from 'vue';
+import WouldYouRather from './components/WouldYouRather.vue';
+
+// Data for the question and two answers
+const wyrQuestion = ref('Live in a house shaped like a triangle or a house shaped like a circle?');
+const wyrAnswer1 = ref('Triangle house');
+const wyrAnswer2 = ref('Circle house');
+
+// Will store the user's selection, either 'Triangle house' or 'Circle house'
+const userSelection = ref('');
+
+function updateUserSelection(userChoice) {
+  userSelection.value = `Thanks! You chose ${userChoice}`;
+}
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div id="app">
+    <h1>Would You Rather...</h1>
+
+    <WouldYouRather
+      :question="wyrQuestion"
+      :answer1="wyrAnswer1"
+      :answer2="wyrAnswer2"
+      @answer-selected="updateUserSelection">
+    </WouldYouRather>
+
+    {{ userSelection }}
+
   </div>
-  <wouldYouRather msg="hello web programers" />
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+#app {
+  background-color: aqua;
 }
 </style>
+

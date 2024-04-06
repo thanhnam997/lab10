@@ -21,12 +21,13 @@ import { ref } from 'vue';
 const height = ref('');
 const weight = ref('');
 
-function calculateBMI() {
+const calculateBMI = () => {
   if (!height.value || !weight.value) return;
 
   const bmi = (weight.value / (height.value * height.value)).toFixed(2);
   emit('stats-entered', { height: height.value, weight: weight.value, bmi });
-}
+};
+
 </script>
 
 <style scoped>

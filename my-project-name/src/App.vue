@@ -1,5 +1,6 @@
 <template>
   <div class="app-container">
+    <h1>Body Mass Index Calculator</h1>
     <BodyMassIndexForm @stats-entered="handleStatsEntered" />
     <div v-if="bmi" class="result-container">
       <h3>Your Body Mass Index (BMI) is:</h3>
@@ -9,26 +10,30 @@
 </template>
 
 <script setup>
+// App.vue
 import { ref } from 'vue';
-import BodyMassIndexForm from './BodyMassIndexForm.vue';
+import BodyMassIndexForm from './components/BodyMassIndexForm.vue';  // Adjust the import path accordingly
+
 
 const bmi = ref('');
 
 function handleStatsEntered(data) {
-  bmi.value = data.bmi;
+  const { height, weight, bmi: calculatedBmi } = data;
+  bmi.value = calculatedBmi;
+  console.log(`Height: ${height}, Weight: ${weight}, BMI: ${calculatedBmi}`);
 }
 </script>
 
 <style>
 .app-container {
-  background-color: #e0e0e0;
+  background-color: #3daf1b;
   padding: 20px;
 }
 
 .result-container {
   margin-top: 20px;
   padding: 10px;
-  background-color: #fff;
-  border: 1px solid #ccc;
+  background-color: #810909;
+  border: 1px solid #280dd9;
 }
 </style>
